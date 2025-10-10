@@ -1,6 +1,0 @@
-services:
-  - type: web
-    name: teacher-job-server
-    env: node
-    buildCommand: cd server && npm install
-    startCommand: cd server && npm start
