@@ -1,8 +1,12 @@
-const fs = require("fs");
-const path = require("path");
-const XLSX = require("xlsx");
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import XLSX from 'xlsx';
 
-const excelDir = path.join(__dirname, "../data/excel");
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const excelDir = path.join(__dirname, '../../data/excel');
 
 // 👇 ключевые слова для поиска колонок (более точные)
 const COLUMN_MAP = {
@@ -24,9 +28,9 @@ const COLUMN_MAP = {
 // 🔍 функция для поиска колонки по ключевым словам
 function findColumnIndex(headers, keywords) {
   if (!headers || !Array.isArray(headers)) return -1;
-  
+
   const normalizedHeaders = headers.map(h => String(h).toLowerCase().trim());
-  
+
   for (const keyword of keywords) {
     for (let i = 0; i < normalizedHeaders.length; i++) {
       if (normalizedHeaders[i].includes(keyword.toLowerCase())) {
@@ -49,7 +53,7 @@ function parseExcelFile(filePath) {
 
   const sheet = workbook.Sheets["ОО"];
   const range = XLSX.utils.decode_range(sheet['!ref']);
-  
+
   // Ищем строку с заголовками
   let headerRowIndex = -1;
   let headers = [];
@@ -62,12 +66,12 @@ function parseExcelFile(filePath) {
       const cell = sheet[cellRef];
       rowData.push(cell ? cell.v : "");
     }
-    
+
     // Проверяем, есть ли в строке ключевые заголовки
-    const hasPosition = rowData.some(cell => 
+    const hasPosition = rowData.some(cell =>
       String(cell).toLowerCase().includes("должность")
     );
-    const hasSchool = rowData.some(cell => 
+    const hasSchool = rowData.some(cell =>
       String(cell).toLowerCase().includes("образовательная организация")
     );
 
@@ -139,7 +143,7 @@ function parseExcelFile(filePath) {
   }
 
   console.log(`✅ ${path.basename(filePath)} — найдено ${jobs.length} вакансий`);
-  
+
   // Логируем первую вакансию для проверки
   if (jobs.length > 0) {
     console.log(`📝 Пример вакансии:`, {
@@ -155,6 +159,33 @@ function parseExcelFile(filePath) {
 
 // 🚀 основная функция для получения всех вакансий
 function getJobs() {
+  console.log('🔍 Поиск Excel файлов в:', excelDir);
+
+  if (!fs.existsSync(excelDir)) {
+    console.error("❌ Папка с Excel не найдена:", excelDir);
+    console.log("📁 Текущая рабочая директория:", process.cwd());
+    console.log("📁 Содержимое корневой директории:", fs.readdirSync('.'));
+
+    // Попробуем найти папку data
+    const possiblePaths = [
+      './data/excel',
+      '../data/excel',
+      '../../data/excel',
+      './server/data/excel'
+    ];
+
+    for (const possiblePath of possiblePaths) {
+      if (fs.existsSync(possiblePath)) {
+        console.log(`✅ Найдена папка по пути: ${possiblePath}`);
+        excelDir = possiblePath;
+        break;
+      }
+    }
+
+    if (!fs.existsSync(excelDir)) {
+      return [];
+    }
+  }
   if (!fs.existsSync(excelDir)) {
     console.error("❌ Папка с Excel не найдена:", excelDir);
     return [];
@@ -179,4 +210,4 @@ function getJobs() {
   return allJobs;
 }
 
-module.exports = { getJobs };
+export { getJobs };
