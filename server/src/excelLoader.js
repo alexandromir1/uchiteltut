@@ -6,7 +6,8 @@ import XLSX from 'xlsx';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const excelDir = path.join(__dirname, '../../data/excel');
+// Используем let вместо const
+let excelDir = path.join(__dirname, '../../data/excel');
 
 // 👇 ключевые слова для поиска колонок (более точные)
 const COLUMN_MAP = {
@@ -182,13 +183,11 @@ function getJobs() {
       }
     }
 
+    // Если после поиска все равно не нашли, возвращаем пустой массив
     if (!fs.existsSync(excelDir)) {
+      console.error("❌ Папка с Excel не найдена после поиска по всем путям");
       return [];
     }
-  }
-  if (!fs.existsSync(excelDir)) {
-    console.error("❌ Папка с Excel не найдена:", excelDir);
-    return [];
   }
 
   const files = fs.readdirSync(excelDir).filter(f => f.endsWith(".xlsx"));
