@@ -1,0 +1,94 @@
+/* client/src/assets/Home.css */
+.header-right-login:hover {
+  background-color: #1c2a7a !important;
+}
+
+.search-button:hover {
+  background-color: #1c2a7a !important;
+}
+
+.job-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15) !important;
+}
+
+.more-link:hover .more-text {
+  color: #1c2a7a !important;
+}
+
+/* Добавляем классы к элементам */
+.header-right-login {
+  padding: 10px 40px;
+  background-color: #2637A1;
+  border-radius: 46px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.search-button {
+  background-color: #2637A1;
+  height: 44px;
+  width: 44px;
+  border-radius: 22px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 12px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.job-item {
+  padding: 30px;
+  background-color: #FAFAFF;
+  border-radius: 16px;
+  flex: 1 1 calc(33.333% - 20px);
+  min-width: 300px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.more-text {
+  color: #25258E;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  transition: color 0.3s ease;
+}
+
+/* client/src/assets/Home.css */
+
+/* Существующие стили... */
+
+/* Стили для страницы вакансии */
+.back-button:hover {
+  color: #1c2a7a !important;
+}
+
+.email-link:hover {
+  color: #1c2a7a !important;
+}
+
+.apply-button:hover {
+  background-color: #1c2a7a !important;
+}
+
+.contact-card {
+  background: #FAFAFF;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+  border: 1px solid #E8F6FF;
+}
+
+.job-section {
+  margin-bottom: 40px;
+}
+
+.info-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
