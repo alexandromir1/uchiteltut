@@ -12,9 +12,15 @@ import SchoolProfile from './pages/SchoolProfile';
 
 import './App.css';
 
-const API_URL = process.env.NODE_ENV === 'production'
-  ? 'https://uchiteltut.onrender.com/graphql'
-  : 'http://localhost:5000/graphql';
+// const API_URL = process.env.NODE_ENV === 'production'
+//   ? 'https://uchiteltut.onrender.com/graphql'
+//   : 'http://localhost:5000/graphql';
+
+// const httpLink = createHttpLink({
+//   uri: API_URL,
+// });
+
+const API_URL = 'https://uchiteltut.onrender.com/graphql';
 
 const httpLink = createHttpLink({
   uri: API_URL,
