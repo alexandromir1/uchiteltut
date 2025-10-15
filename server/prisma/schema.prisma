@@ -1,0 +1,28 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite" // можешь поменять на postgresql / mysql
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  password  String
+  name      String
+  role      String   // "teacher" | "school"
+  createdAt DateTime @default(now())
+  responses Response[]
+}
+
+model Response {
+  id        Int      @id @default(autoincrement())
+  user      User     @relation(fields: [userId], references: [id])
+  userId    Int
+  jobId     String
+  jobTitle  String
+  school    String
+  createdAt DateTime @default(now())
+}
