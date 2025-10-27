@@ -1,19 +1,30 @@
 # Dependencies
 node_modules/
+client/node_modules/
+server/node_modules/
+*/node_modules/
+
+# Production builds
+dist/
+build/
+client/build/
+
+# Environment variables
+.env
+*.env.local
+*.env.production
+
+# Logs
+*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Production builds
-build/
-dist/
-
-# Environment variables
-.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
 
 # IDE
 .vscode/
@@ -25,19 +36,15 @@ dist/
 .DS_Store
 Thumbs.db
 
-# Logs
-logs
-*.log
+# Database
+*.db
+*.sqlite
+prisma/dev.db
 
-# Runtime data
-pids
-*.pid
-*.seed
-*.pid.lock
+# Debug files
+jobs-debug.json
+server/jobs-debug.json
 
-# Coverage directory used by tools like istanbul
-coverage/
-
-# Temporary folders
-tmp/
-temp/
+# Excel cache/temp files
+*.tmp
+~$*

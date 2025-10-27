@@ -1,12 +1,12 @@
 {
-  "name": "server",
+  "name": "teacher-job-portal-server",
   "version": "1.0.0",
-  "description": "",
+  "description": "Backend for teacher job portal",
   "main": "index.js",
   "type": "module",
   "scripts": {
     "start": "node index.js",
-    "dev": "nodemon index.js"
+    "dev": "node --watch index.js"
   },
   "keywords": [],
   "author": "",
